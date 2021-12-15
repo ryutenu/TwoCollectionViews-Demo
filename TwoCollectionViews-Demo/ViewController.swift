@@ -10,17 +10,15 @@ import Combine
 
 class ViewController: UIViewController {
     
-    fileprivate let screenWidth = UIScreen.main.bounds.size.width
-    
-    fileprivate let screenHeight = UIScreen.main.bounds.size.height
-    
     let model = Model()
     
-    fileprivate var mainCollectionView: UICollectionView!
+    private let screenWidth = UIScreen.main.bounds.size.width
+    private let screenHeight = UIScreen.main.bounds.size.height
     
-    fileprivate var thumbCollectionView: UICollectionView!
+    private var mainCollectionView: UICollectionView!
+    private var thumbCollectionView: UICollectionView!
     
-    fileprivate var thumCollectionViewActive: Bool = true
+    private var thumCollectionViewActive: Bool = true
     
     @Published var collectionViewIndex: Int? = 0
     
@@ -45,16 +43,16 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpMainCollectionView()
-        setUpThumCollectionView()
+        setupMainCollectionView()
+        setupThumCollectionView()
         bind()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         let displayDataIndex = model.colors.count
         let indexPath = IndexPath(row: displayDataIndex - 1, section: 0)
-        thumbCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
         mainCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
+        thumbCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
     }
     
     private func bind() {
@@ -67,7 +65,7 @@ class ViewController: UIViewController {
             })
     }
     
-    func setUpMainCollectionView() {
+    func setupMainCollectionView() {
         let mainLayout = UICollectionViewFlowLayout()
         mainLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         mainLayout.minimumLineSpacing = 0
@@ -84,12 +82,12 @@ class ViewController: UIViewController {
         mainCollectionView.showsVerticalScrollIndicator = false
         mainCollectionView.backgroundColor = UIColor.white
         mainCollectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: "mainCell")
-        mainCollectionView.delegate = self
         mainCollectionView.dataSource = self
+        mainCollectionView.delegate = self
         self.view.addSubview(mainCollectionView)
     }
     
-    func setUpThumCollectionView() {
+    func setupThumCollectionView() {
         let thumbLayout = UICollectionViewFlowLayout()
         thumbLayout.sectionInset = UIEdgeInsets(top: 0, left: screenWidth * 0.5, bottom: 0, right: screenWidth * 0.4)
         thumbLayout.minimumLineSpacing = 0
@@ -105,22 +103,18 @@ class ViewController: UIViewController {
         thumbCollectionView.showsVerticalScrollIndicator = false
         thumbCollectionView.backgroundColor = .darkGray
         thumbCollectionView.register(ThumbnailCollectionViewCell.self, forCellWithReuseIdentifier: "thumCell")
-        thumbCollectionView.delegate = self
         thumbCollectionView.dataSource = self
+        thumbCollectionView.delegate = self
         self.view.addSubview(thumbCollectionView)
     }
 }
 
-extension ViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == thumbCollectionView {
-            mainCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
-            thumbCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        }
-    }
-}
-
 extension ViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.mainCollectionView {
             let partitems = model.colors
@@ -129,10 +123,6 @@ extension ViewController: UICollectionViewDataSource {
             let partitems = model.colors
             return partitems.count
         }
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -148,12 +138,17 @@ extension ViewController: UICollectionViewDataSource {
     }
 }
 
-extension ViewController {
-    func findCenterIndex() {
-        let center = self.view.convert(self.thumbCollectionView.center, to: self.thumbCollectionView)
-        let collectionViewIndexpath:IndexPath? = thumbCollectionView.indexPathForItem(at: center)
-        collectionViewIndex = collectionViewIndexpath?.row
+extension ViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == thumbCollectionView {
+            mainCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
+            thumbCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
     }
+}
+
+extension ViewController {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == mainCollectionView {
@@ -162,26 +157,10 @@ extension ViewController {
             self.findCenterIndex()
         }
     }
-}
-
-class MainCollectionViewCell: UICollectionViewCell {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    
+    func findCenterIndex() {
+        let center = self.view.convert(self.thumbCollectionView.center, to: self.thumbCollectionView)
+        let collectionViewIndexpath:IndexPath? = thumbCollectionView.indexPathForItem(at: center)
+        collectionViewIndex = collectionViewIndexpath?.row
     }
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-class ThumbnailCollectionViewCell: UICollectionViewCell {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-class Model {
-    let colors:Array<UIColor> = [ UIColor.white, UIColor.lightGray, UIColor.cyan, UIColor.white, UIColor.lightGray, UIColor.cyan, UIColor.white, UIColor.lightGray, UIColor.cyan, UIColor.white]
 }
