@@ -15,7 +15,7 @@
 		E7B692DD2769B2CF00D13533 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7B692DB2769B2CF00D13533 /* LaunchScreen.storyboard */; };
 		E7B692E52769B40E00D13533 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B692E42769B40E00D13533 /* Model.swift */; };
 		E7B692E72769B5F500D13533 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B692E62769B5F500D13533 /* MainCollectionViewCell.swift */; };
-		E7B692E92769B61C00D13533 /* ThumbnailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B692E82769B61C00D13533 /* ThumbnailCollectionViewCell.swift */; };
+		E7B692E92769B61C00D13533 /* ThumbCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B692E82769B61C00D13533 /* ThumbCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 		E7B692DE2769B2CF00D13533 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7B692E42769B40E00D13533 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		E7B692E62769B5F500D13533 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
-		E7B692E82769B61C00D13533 /* ThumbnailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailCollectionViewCell.swift; sourceTree = "<group>"; };
+		E7B692E82769B61C00D13533 /* ThumbCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +66,7 @@
 				E7B692D22769B2CE00D13533 /* SceneDelegate.swift */,
 				E7B692D42769B2CE00D13533 /* ViewController.swift */,
 				E7B692E62769B5F500D13533 /* MainCollectionViewCell.swift */,
-				E7B692E82769B61C00D13533 /* ThumbnailCollectionViewCell.swift */,
+				E7B692E82769B61C00D13533 /* ThumbCollectionViewCell.swift */,
 				E7B692E42769B40E00D13533 /* Model.swift */,
 				E7B692D62769B2CE00D13533 /* Main.storyboard */,
 				E7B692D92769B2CF00D13533 /* Assets.xcassets */,
@@ -152,7 +152,7 @@
 				E7B692E72769B5F500D13533 /* MainCollectionViewCell.swift in Sources */,
 				E7B692D32769B2CE00D13533 /* SceneDelegate.swift in Sources */,
 				E7B692E52769B40E00D13533 /* Model.swift in Sources */,
-				E7B692E92769B61C00D13533 /* ThumbnailCollectionViewCell.swift in Sources */,
+				E7B692E92769B61C00D13533 /* ThumbCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

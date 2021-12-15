@@ -9,11 +9,14 @@ import UIKit
 
 class Model {
     
-    let colors = [UIColor.systemRed,
-                  UIColor.systemOrange,
-                  UIColor.systemYellow,
+    let colors = [UIColor.systemBlue,
+                  UIColor.systemBrown,
                   UIColor.systemGreen,
+                  UIColor.systemIndigo,
+                  UIColor.systemOrange,
+                  UIColor.systemPink,
+                  UIColor.systemPurple,
+                  UIColor.systemRed,
                   UIColor.systemTeal,
-                  UIColor.systemBlue,
-                  UIColor.systemPurple]
+                  UIColor.systemYellow]
 }

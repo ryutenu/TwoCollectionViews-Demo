@@ -1,5 +1,5 @@
 //
-//  ThumbnailCollectionViewCell.swift
+//  ThumbCollectionViewCell.swift
 //  TwoCollectionViews-Demo
 //
 //  Created by Alan Liu on 2021/12/15.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ThumbnailCollectionViewCell: UICollectionViewCell {
+class ThumbCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
